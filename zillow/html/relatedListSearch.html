@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Zillow</title>
+  <!-- StyleSheets -->
+  <link href="https://www.zoho.com/lp/fonts/proxima-nova/stylesheet.css" rel="stylesheet" type="text/css">
+  <link href="../css/flexslider.css" rel="stylesheet" type="text/css">
+  <link href="../css/style.css" rel="stylesheet" type="text/css">
+
+  <!-- JavaScript libraries -->
+  <script src="../lib/jquery-1.11.1.min.js" type="text/javascript"></script>
+  <script src="../lib/xml2json.min.js"></script>
+  <script defer src="../js/jquery.flexslider.js"></script>
+
+  <!-- Handlebar - to render html  -->
+  <script src="../lib/handlebars-v4.0.10.js" type="text/javascript"></script>
+  
+  <!-- EmbeddedAppSDK -->
+  <script src="../lib/ZohoEmbededAppSDK.min.js" type="text/javascript"></script>
+  <!-- Custom Logic -->
+  <script src="../js/relatedListSearch.js" type="text/javascript"></script>
+
+</head>
+<body>
+  <div id="loading">
+    Loading<span class="one">.</span><span class="two2">.</span><span class="three">.</span>
+  </div>
+  <center>
+    <div class="subnav pT40" id="errorDiv" style="color:red;"></div>
+  </center>
+  <div id="propertyContentDiv"></div>
+  <script id="propertyScript" type="text/x-handlebars-template">
+<!-- ------------------------------------------------------------------------------------------------ -->
+    <div class="BG">
+      <div id="tab1" class="tab-body" style="display:block;">
+        <div class="propertybg clearfix">
+          <div class="Prptyleft fL">
+            <p class="subnav clearfix">Address</p>
+            <p class="ProText mT20">
+              <b>
+                <div style="line-height: .8">{{address.street}}</div>
+                <br/>
+                <div style="line-height: .8;">{{address.city}} {{address.state}} {{address.zipcode}}</div style=".8">
+                <br/>
+              </b>
+              <div style="line-height:.8;">{{editedFacts.bedrooms}} beds, {{editedFacts.bathrooms}} baths, {{editedFacts.finishedSqFt}} sqft</div>
+            </p>
+            <p class="subnav pT35">Facts</p>
+            <ul class="factsBG clearfix mT10">
+                 {{#each info}}
+                 
+              <li class="factText">
+                <label class="fasubText">{{label}}</label> {{value}}
+              </li>
+                 {{/each}}
+               
+            </ul>
+            
+          </div>
+          <div class="prptyright fL">
+            <p class="subnav">Pictures</p>
+            <div class="imagebg">
+              <span class="previewarrow"></span>
+              <div class="flexslider carousel">
+                <ul class="slides">
+                 {{#if images}}{{#each images.image.url}}
+                 
+                  <li>
+                    <img class="image" src="{{this}}">
+                    </li>
+                 {{/each}}
+                 {{else}}
+                    <center>
+                      <li>No Image Available</li>
+                    </center>
+                 {{/if}}
+                  </ul>
+                </div>
+                <span class="nextarrow"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  <!-- ------------------------------------------------------------------------------------------------ -->
+  </script> 
+</body>
+</html>
